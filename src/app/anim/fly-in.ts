@@ -1,7 +1,7 @@
 import {trigger, state, style, transition, animate, keyframes} from '@angular/animations';
 
 export const flyIn = trigger('flyIn', [
-  state('in', style({transorm: 'translateX(0)'})),
+  state('in', style({transform: 'translateX(0)'})),
   transition('void => *', [
     animate(300, keyframes([
       style({opacity: 0, transform: 'translateX(-100%)', offset: 0}),
