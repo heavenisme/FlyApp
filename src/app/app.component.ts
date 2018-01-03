@@ -1,13 +1,13 @@
-import {Component, HostListener, ElementRef, Renderer, ViewContainerRef} from '@angular/core';
-import {TranslateService} from 'ng2-translate';
+import {Component, HostListener, ElementRef, Renderer, ViewContainerRef, OnInit} from '@angular/core';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
-import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
+import {ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot} from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
 
   constructor(public elementRef: ElementRef,
@@ -18,15 +18,15 @@ export class AppComponent {
               public vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
     console.log('什么也没有');
+  }
 
-    // 添加语言支持
-    translate.addLangs(['zh-CN', 'en']);
-    // 设置默认语言，一般在无法匹配的时候使用
-    translate.setDefaultLang('zh-CN');
-
-    // 获取当前浏览器环境的语言比如en、 zh
-    const broswerLang = translate.getBrowserLang();
-    translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
+  ngOnInit() {
+    // --- set i18n begin ---
+    this.translate.addLangs(['zh', 'en']);
+    this.translate.setDefaultLang('zh');
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang.match(/zh|en/) ? browserLang : 'zh');
+    // --- set i18n end ---
   }
 
   changeLang(lang) {
