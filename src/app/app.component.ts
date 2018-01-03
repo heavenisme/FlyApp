@@ -1,7 +1,8 @@
 import {Component, HostListener, ElementRef, Renderer, ViewContainerRef, OnInit} from '@angular/core';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot} from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import {TranslateService} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
