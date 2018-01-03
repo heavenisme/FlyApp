@@ -10,7 +10,7 @@
     },
     "post":{
         "publish":"publish"
-    },    
+    },
     "userRegister":{
         "userSignUp":"User Sign Up",
         "userName":"UserName:",
@@ -34,5 +34,6 @@
     "firstPage":"First",
     "lastPage":"Last",
     "previousPage":"Previous",
-    "nextPage":"Next"
+    "nextPage":"Next",
+    "hello": "the word is hello"
 }
