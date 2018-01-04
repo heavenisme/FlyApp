@@ -2,6 +2,8 @@ import {Component, HostListener, ElementRef, Renderer, ViewContainerRef, OnInit}
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
+import {User} from './ui/user/user.model';
+import {UserService} from './ui/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +12,15 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-
+  currentUser: User;
   constructor(public elementRef: ElementRef,
               public renderer: Renderer,
               public router: Router,
               public translate: TranslateService,
-              public toastr: ToastsManager,
-              public vcr: ViewContainerRef) {
-    this.toastr.setRootViewContainerRef(vcr);
+              public toast: ToastsManager,
+              public vcr: ViewContainerRef,
+              public userService: UserService) {
+    this.toast.setRootViewContainerRef(vcr);
     console.log('什么也没有');
   }
 
@@ -47,7 +50,7 @@ export class AppComponent implements OnInit {
   }
 
   public doLogout(): void {
-    this.toastr.success('退出成功！', '系统提示');
+    this.toast.success('退出成功！', '系统提示');
     this.router.navigateByUrl('');
   }
 }

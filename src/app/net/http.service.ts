@@ -18,7 +18,7 @@ export class HttpService {
     }
   }
 
-  private post<T>(url: string, params: any) {
+  public post<T>(url: string, params: any) {
     return this.http
       .post<T>(url, params)
       .subscribe(res => {
@@ -26,7 +26,7 @@ export class HttpService {
       });
   }
 
-  private get<T>(url: string, params: any): any {
+  public get<T>(url: string, params: any): any {
     return this.http
       .get(url, {params: params})
       .subscribe(res => {

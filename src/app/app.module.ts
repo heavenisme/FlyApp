@@ -19,6 +19,8 @@ import { HomeComponent } from './ui/home/home.component';
 import { UserComponent } from './ui/user/user.component';
 import { LoginComponent } from './ui/user/login/login.component';
 import { RegisterComponent } from './ui/user/register/register.component';
+import {HttpService} from './net/http.service';
+import {UserService} from './ui/user/user.service';
 
 export function createTranslateHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -49,6 +51,8 @@ export function createTranslateHttpLoader(http: HttpClient) {
     ToastModule.forRoot()
   ],
   providers: [
+    HttpService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
