@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './ui/user/user.component';
 
 export const appRoutes: Routes = [
   {

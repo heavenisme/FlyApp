@@ -15,10 +15,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {appRoutes} from './app.routes';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { UserComponent } from './user/user.component';
-import { LoginComponent } from './user/login/login.component';
-import { RegisterComponent } from './user/register/register.component';
+import { HomeComponent } from './ui/home/home.component';
+import { UserComponent } from './ui/user/user.component';
+import { LoginComponent } from './ui/user/login/login.component';
+import { RegisterComponent } from './ui/user/register/register.component';
 
 export function createTranslateHttpLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
