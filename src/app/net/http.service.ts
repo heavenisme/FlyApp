@@ -21,17 +21,24 @@ export class HttpService {
   public post<T>(url: string, params: any) {
     return this.http
       .post<T>(url, params)
-      .subscribe(res => {
-        this.handleSuccess(res);
-      });
+      .subscribe(
+        res => {
+          this.handleSuccess(res);
+        },
+        error => {
+          this.handleError(error);
+        });
   }
 
   public get<T>(url: string, params: any): any {
     return this.http
       .get(url, {params: params})
       .subscribe(res => {
-        this.handleSuccess(res);
-      });
+          this.handleSuccess(res);
+        },
+        error => {
+          this.handleError(error);
+        });
   }
 
   private handleSuccess<T>(res) {
