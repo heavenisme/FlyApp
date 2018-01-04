@@ -13,9 +13,11 @@ import {UserService} from './ui/user/user.service';
 export class AppComponent implements OnInit {
   title = 'app';
   currentUser: User;
+
   constructor(public elementRef: ElementRef,
               public renderer: Renderer,
               public router: Router,
+              public activatedRoute: ActivatedRoute,
               public translate: TranslateService,
               public toast: ToastsManager,
               public vcr: ViewContainerRef,
@@ -25,6 +27,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initLanguage();
+    this.initUser();
+  }
+
+  private initLanguage() {
     // --- set i18n begin ---
     this.translate.addLangs(['zh', 'en']);
     this.translate.setDefaultLang('en');
@@ -32,6 +39,25 @@ export class AppComponent implements OnInit {
     this.translate.use(browserLang.match(/zh|en/) ? browserLang : 'zh');
     console.log(browserLang);
     // --- set i18n end ---
+  }
+
+  private initUser() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.userService.currentUser.subscribe(data => {
+      this.currentUser = data;
+      const activatedRouteSnapshot: ActivatedRouteSnapshot = this.activatedRoute.snapshot;
+      const routerState: RouterState = this.router.routerState;
+      const routerStateSnapshot: RouterStateSnapshot = routerState.snapshot;
+
+      console.log(activatedRouteSnapshot);
+      console.log(routerState);
+      console.log(routerStateSnapshot);
+
+      if (routerStateSnapshot.url.indexOf('/login') !== -1) {
+        this.router.navigateByUrl('/home');
+      }
+
+    }, error => console.error(error));
   }
 
   changeLang(lang) {
