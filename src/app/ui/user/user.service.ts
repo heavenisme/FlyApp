@@ -12,7 +12,7 @@ export class UserService {
   constructor(public httpService: HttpService) {
   }
 
-  public get currentUser(): Observable<User>{
+  public get currentUser(): Observable<User> {
     return this.subject.asObservable();
   }
 
@@ -22,8 +22,12 @@ export class UserService {
 
   }
 
+  public register(user: User) {
+      return this.httpService.post<User>(this.userLoginURL, user);
+  }
 
-  public logout(): void{
+
+  public logout(): void {
     localStorage.removeItem('currentUser');
     this.subject.next(Object.assign({}));
   }
